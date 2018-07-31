@@ -1,3 +1,5 @@
+(define-derived-mode frames-mode special-mode "Frames")
+
 (defun frames ()
   "Visual representation of frames similar to Vim's :tabs command."
   (interactive)
@@ -50,6 +52,8 @@
                         (with-current-buffer buffer
                           (save-selected-window
                             (select-window (get-buffer-window buffer 0))
+                            (or (derived-mode-p 'frames-mode)
+                                (frames-mode))
                             (setq buffer-read-only nil)
                             (erase-buffer)
                             (insert represented-frames)
