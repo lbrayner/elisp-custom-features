@@ -37,7 +37,7 @@
                                        (frame-parameter frame 'name))))
        (represent-windows
         (representation other-window-exists-p windows)
-        (if (not (eq windows nil))
+        (if (not (null windows))
             (let* ((window (car windows))
                    (shown-window (show-window other-window-exists-p window)))
               (represent-windows
@@ -49,7 +49,7 @@
           representation))
        (represent-frames
         (count representation other-window-exists-p selected-frame frames)
-        (if (not (eq frames nil))
+        (if (not (null frames))
             (let ((frame (car frames)))
               (with-selected-frame frame
                 (let* ((represented-windows (represent-windows
